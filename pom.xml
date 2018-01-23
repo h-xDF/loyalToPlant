@@ -8,6 +8,33 @@
     <artifactId>loyalToPlant-test</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <holdBrowserOpen>false</holdBrowserOpen>
+
+        <surefire.argLine> -Dselenide.holdBrowserOpen=${holdBrowserOpen} test site jetty:run -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar</surefire.argLine>
+
+        <allure.version>1.5.2</allure.version>
+        <aspectj.version>1.8.13</aspectj.version> <!-- 1.8.9-->
+
+        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+        <allure.report.directory>${project.build.directory}/site/allure-report</allure.report.directory>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>Scenario</id>
+            <properties>
+                <!-- <runtest.options>STANDALONE</runtest.options> -->
+                <test.suite>src/test/resource/testSuit/basicScenario.xml</test.suite>
+            </properties>
+        </profile>
+        <profile>
+            <id>All</id>
+            <properties>
+                <test.suite>src/test/resource/testSuit/allTest.xml</test.suite>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencies>
         <!-- selenide -->
@@ -31,7 +58,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.13.1</version> 
+            <version>6.13.1</version>
             <scope>test</scope>
         </dependency>
 
@@ -80,10 +107,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.20.1</version> <!-- 2.19.1 -->
                 <configuration>
-                    <systemPropertyVariables>
-                        <runtest>${runtest.options}</runtest>
-                    </systemPropertyVariables>
-
                     <suiteXmlFiles>
                         <suiteXmlFile>${test.suite}</suiteXmlFile>
                     </suiteXmlFiles>
