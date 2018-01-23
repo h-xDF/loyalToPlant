@@ -17,6 +17,7 @@ public class First {
 
     @Test
     public void local() {
+/*
 
         //System.setProperty("webdriver.gecko.driver", parameters.getProperty("pathDriverFirefoxWin"));
         System.setProperty("webdriver.chrome.driver", parameters.getProperty("pathDriverChromeWin"));
@@ -46,11 +47,12 @@ public class First {
         }
 
         //optionsList.get(optionsList.size() - 1).findElement(By.tagName("a")).click(); // worked
+        optionsList.get(optionsList.size() - 1).click();
         sleep(1000);
         //System.out.println(list.get(0).findElementsByXPath("td").size());
         //System.out.println(list.get(0).$$x("td").size());
 
 
-
+*/
     }
 }
