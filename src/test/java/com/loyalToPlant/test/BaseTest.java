@@ -75,7 +75,7 @@ public class BaseTest {
     }
 
     @AfterClass(alwaysRun = true)
-    public void closeBrowser() {
+    public void tearDown() {
         if (WebDriverRunner.getWebDriver() != null) {
             WebDriverRunner.getWebDriver().quit();
         }

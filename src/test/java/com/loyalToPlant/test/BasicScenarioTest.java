@@ -1,22 +1,23 @@
 package com.loyalToPlant.test;
 
-import com.codeborne.selenide.ElementsCollection;
+import com.loyalToPlant.helper.HeaderPhoneBook;
 import com.loyalToPlant.page.ContactAddPage;
 import com.loyalToPlant.page.DeletePage;
-import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selectors.byXpath;
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.sleep;
 import static com.loyalToPlant.helper.Helper.parameters;
 
 public class BasicScenarioTest extends BaseTest{
 
+    private String testName = "name";
+    private String testPhone = "phone";
+    private String testBirthday = "1111-11-11";
+    private String testPostal = "postal";
+
     @Test(priority = 2)
     public void badLogin() {
 
-        //loginPage = phoneBookPage.logout();
         loginPage.checkLoginForm();
         loginPage.loginAs(parameters.getProperty("loginTest"), "BAD_PASSWORD");
         loginPage.checkLoginForm();
@@ -26,31 +27,43 @@ public class BasicScenarioTest extends BaseTest{
     public void logIn() {
 
         phoneBookPage = loginPage.loginAs(parameters.getProperty("loginTest"), parameters.getProperty("passwordTest"));
-        //CHECK TITTLE
+        phoneBookPage.checkTittlePage("Телефонная");
     }
 
     @Test(priority = 4, dependsOnMethods = "logIn")
-    public void creteContact() {
+    public void createContact() {
 
-       // for(int i = 0; i < 30; i++) {
-        /*try {
-            phoneBookPage.deleteContact(0);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
+        int oldCount = phoneBookPage.getSizePhoneBook();
 
-        /*ElementsCollection contact = $$(byXpath("//table/tbody/tr")).get(0).findAll("td");
-        System.out.println(contact);
-        System.out.println(contact.size());
-        System.out.println(contact.get(4));
-        System.out.println(contact.get(4).getText()); //find(By.tagName("a"))
-        //contact.get(4).find(By.tagName("a")).click();
-        sleep(500);*/
+        ContactAddPage contactAddPage = phoneBookPage.clickPhoneBookAdd();
+        contactAddPage.enterValue(testName,testPhone,testBirthday,testPostal);
+        phoneBookPage = contactAddPage.clickBack();
 
-            phoneBookPage.deleteContact(0);
-        //}
-        //ContactAddPage contactAddPage = phoneBookPage.clickPhoneBookAdd();
+        int newCount = phoneBookPage.getSizePhoneBook();
 
-        // added space
+        Assert.assertEquals(newCount, oldCount + 1);
+    }
+
+    @Test(priority = 5, dependsOnMethods = "createContact")
+    public void checkContact() {
+
+        phoneBookPage.checkAttribute(0, HeaderPhoneBook.NAME_CONTACT, testName);
+        phoneBookPage.checkAttribute(0, HeaderPhoneBook.PHONE_NUMBER, testPhone);
+        phoneBookPage.checkAttribute(0, HeaderPhoneBook.BIRTHDAY, testBirthday);
+        phoneBookPage.checkAttribute(0, HeaderPhoneBook.INDEX_NUMBER, testPostal);
+    }
+
+    @Test(priority = 6, dependsOnMethods = "checkContact")
+    public void deletingContact() {
+
+        DeletePage deletePage = phoneBookPage.deleteContact(0);
+        phoneBookPage = deletePage.backPhoneBook();
+    }
+
+    @Test(priority = 7, dependsOnMethods = "deletingContact")
+    public void logOut() {
+
+        loginPage = phoneBookPage.logout();
+        loginPage.checkLoginForm();
     }
 }

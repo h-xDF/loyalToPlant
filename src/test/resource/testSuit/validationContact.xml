@@ -2,11 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Test suite" parallel="none" >
 
-    <test name="authorization-tests-chrome">
+    <test name="validation contact">
         <parameter name="browserName" value="CHROME"></parameter>
-        <parameter name="platformName" value="UNIX"></parameter>
+        <parameter name="platformName" value="WIN"></parameter>
         <classes>
-            <class name="com.loyalToPlant.test.First"/>
+            <class name="com.loyalToPlant.test.ValidationValueContactTest"/>
         </classes>
     </test>
 

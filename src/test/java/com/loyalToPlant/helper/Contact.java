@@ -11,16 +11,9 @@ public class Contact {
 
     private ElementsCollection contactInfo;
 
-    private Contact() {}
-
     Contact(SelenideElement contactRootSelector) {
 
         this.contactInfo = contactRootSelector.findAll("td").shouldHaveSize(5); // Количество полей контакта 5
-
-        //формирование однородной колекции объектов (у атрибута 'удаление' убран уровень вложенности)
-        SelenideElement buf = contactInfo.remove(REMOVE.getNumber());
-        buf = buf.find(By.tagName("a"));
-        contactInfo.add(buf);
     }
 
     public void checkAttribute(HeaderPhoneBook columnName, String expectedString) {
@@ -31,6 +24,7 @@ public class Contact {
 
     public void deleteContact() {
 
-        contactInfo.get(REMOVE.getNumber()).click();
+        System.out.println(contactInfo.get(REMOVE.getNumber()));
+        contactInfo.get(REMOVE.getNumber()).find(By.tagName("a")).click();
     }
 }

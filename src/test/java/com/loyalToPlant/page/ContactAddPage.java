@@ -25,7 +25,7 @@ public class ContactAddPage {
         BIRTHDAY_INPUT.shouldHave(Condition.visible).sendKeys(birthday);
         POSTAL_INPUT.shouldHave(Condition.visible).sendKeys(postal);
 
-        $(byText("Отправить запрос")).click();
+        $("input[type = 'submit']").click();
     }
 
     public void checkError(String message) {

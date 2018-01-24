@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Basic Scenario" parallel="none" >
+<suite name="Test suite" parallel="none" >
 
-    <test name="authorization-tests-chrome">
+    <test name="basic scenario">
         <parameter name="browserName" value="CHROME"></parameter>
-        <parameter name="platformName" value="UNIX"></parameter>
+        <parameter name="platformName" value="WIN"></parameter> <!-- UNIX-->
         <classes>
             <class name="com.loyalToPlant.test.BasicScenarioTest"/>
         </classes>

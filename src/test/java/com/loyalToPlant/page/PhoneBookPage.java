@@ -6,13 +6,14 @@ import com.loyalToPlant.helper.Contact;
 import com.loyalToPlant.helper.HeaderPhoneBook;
 import com.loyalToPlant.helper.PhoneBook;
 
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
 public class PhoneBookPage {
 
     private static final SelenideElement BTN_LOGOUT = $("p>a[href = 'logout.php']");
-    private static final SelenideElement BTN_ADD_NOTE = $(".firefinder-match[href = 'phoneBookAdd.php']");
     private static final SelenideElement TITLE = $("body>h1>center");  //TODO remove?
 
     //Todo check tittle message
@@ -27,7 +28,12 @@ public class PhoneBookPage {
 
     public int getSizePhoneBook() {
 
-        return new PhoneBookPage().getSizePhoneBook();
+        return new PhoneBook().getSizePhoneBook();
+    }
+
+    public void checkTittlePage(String tittle) {
+
+        $(withText(tittle)).should(Condition.visible);
     }
 
     public DeletePage deleteContact(int indexContact) {
@@ -40,7 +46,7 @@ public class PhoneBookPage {
 
     public ContactAddPage clickPhoneBookAdd() {
 
-        BTN_ADD_NOTE.should(Condition.visible).click();
+        $(byText("Добавить запись")).click();
         return page(ContactAddPage.class);
     }
 
