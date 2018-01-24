@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
@@ -15,12 +16,20 @@ public class LoginPage {
     private static final SelenideElement SIGN_IN_BUTTON = $("button[class='gradbutton green']");
     private static final SelenideElement LOGIN_FORM = $("form[action = 'login.php']");
 
+    @Step("Check login form")
     public void checkLoginForm() {
 
         Assert.assertTrue(LOGIN_FORM.isDisplayed());
         Assert.assertTrue(LOGIN_FORM.isEnabled());
     }
 
+    /**
+     * Credentials input and click LogIn
+     * go to PhoneBook page
+     *
+     * @return {@link PhoneBookPage}
+     */
+    @Step("LogIn")
     public PhoneBookPage loginAs(String username, String password) {
 
         USERNAME_INPUT.should(Condition.visible).setValue(username);

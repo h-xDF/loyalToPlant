@@ -3,8 +3,8 @@
 <suite name="Test suite" parallel="none" >
 
     <test name="validation contact">
-        <parameter name="browserName" value="CHROME"></parameter>
-        <parameter name="platformName" value="WIN"></parameter>
+        <parameter name="browserName" value="CHROME"></parameter> <!-- FIREFOX -->
+        <parameter name="platformName" value="WIN"></parameter> <!-- UNIX -->
         <classes>
             <class name="com.loyalToPlant.test.ValidationValueContactTest"/>
         </classes>

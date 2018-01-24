@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.loyalToPlant.helper.Contact;
 import com.loyalToPlant.helper.HeaderPhoneBook;
 import com.loyalToPlant.helper.PhoneBook;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
@@ -18,6 +19,7 @@ public class PhoneBookPage {
 
     //Todo check tittle message
 
+    @Step("Check attribute contact")
     public void checkAttribute(int numberContact, HeaderPhoneBook headerPhoneBook, String expectedString) {
 
         PhoneBook phoneBook = new PhoneBook();
@@ -31,11 +33,13 @@ public class PhoneBookPage {
         return new PhoneBook().getSizePhoneBook();
     }
 
+    @Step("Check tittle page")
     public void checkTittlePage(String tittle) {
 
         $(withText(tittle)).should(Condition.visible);
     }
 
+    @Step("Delete contact")
     public DeletePage deleteContact(int indexContact) {
 
         PhoneBook phoneBook = new PhoneBook();
@@ -44,12 +48,14 @@ public class PhoneBookPage {
         return page(DeletePage.class);
     }
 
+    @Step("Click button Добавить запсь")
     public ContactAddPage clickPhoneBookAdd() {
 
         $(byText("Добавить запись")).click();
         return page(ContactAddPage.class);
     }
 
+    @Step("LogOut")
     public LoginPage logout() {
 
         BTN_LOGOUT.should(Condition.visible).click();

@@ -24,7 +24,6 @@ public class Contact {
 
     public void deleteContact() {
 
-        System.out.println(contactInfo.get(REMOVE.getNumber()));
         contactInfo.get(REMOVE.getNumber()).find(By.tagName("a")).click();
     }
 }

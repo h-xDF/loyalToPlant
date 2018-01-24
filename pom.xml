@@ -14,7 +14,7 @@
         <surefire.argLine> -Dselenide.holdBrowserOpen=${holdBrowserOpen} test site jetty:run -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar</surefire.argLine>
 
         <allure.version>1.5.2</allure.version>
-        <aspectj.version>1.8.10</aspectj.version> <!-- 1.8.9-->
+        <aspectj.version>1.8.13</aspectj.version>
 
         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
         <allure.report.directory>${project.build.directory}/site/allure-report</allure.report.directory>
@@ -24,7 +24,6 @@
         <profile>
             <id>Scenario</id>
             <properties>
-                <!-- <runtest.options>STANDALONE</runtest.options> -->
                 <test.suite>src/test/resource/testSuit/basicScenario.xml</test.suite>
             </properties>
         </profile>
@@ -45,15 +44,6 @@
             <scope>test</scope>
         </dependency>
 
-<!--
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>3.8.1</version> &lt;!&ndash; 3.7.1&ndash;&gt;
-            <scope>test</scope>
-        </dependency>
--->
-
         <!-- test framework-->
         <dependency>
             <groupId>org.testng</groupId>
@@ -62,21 +52,11 @@
             <scope>test</scope>
         </dependency>
 
-<!--
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.13</version>
-            <scope>test</scope>
-        </dependency>
--->
-
         <!-- report -->
-
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.0-BETA21</version> <!-- last version-->
+            <version>2.0-BETA21</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -85,26 +65,10 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <!--<dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-testng-adaptor</artifactId>
-            <version>${allure.version}</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>-->
-
     </dependencies>
 
     <build>
-
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -141,51 +105,15 @@
                             <value>${project.build.directory}/allure-results</value>
                         </property>
                     </systemProperties>
-
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <!--<value>ru.yandex.qatools.allure.testng.AllureTestListener</value>-->
-                            <value>com.loyalToPlant.listners.TestListner</value>
-                        </property>
-                    </properties>
                 </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjweaver</artifactId>
-                        <version>1.8.13</version> <!-- ${aspectj.version} -->
+                        <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
-
-<!--            <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>8.1.16.v20140903</version>
-                <configuration>
-                    <webAppSourceDirectory>${project.build.directory}/site/allure-report</webAppSourceDirectory>
-                    <stopPort> 5556 </stopPort>
-                    <stopKey> stop </stopKey>
-                    <systemProperties>
-                        <systemProperty>
-                            <name>jetty.port</name>
-                            <value>5555</value>
-                        </systemProperty>
-                    </systemProperties>
-                </configuration>
-            </plugin>-->
         </plugins>
     </build>
-<!--    <reporting>
-        <excludeDefaults>true</excludeDefaults>
-        <plugins>
-            <plugin>
-                <groupId>ru.yandex.qatools.allure</groupId>
-                <artifactId>allure-maven-plugin</artifactId>
-                <version>2.6</version>
-            </plugin>
-        </plugins>
-    </reporting>-->
-    
 </project>

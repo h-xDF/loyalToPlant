@@ -3,7 +3,7 @@
 <suite name="Test suite" parallel="none" >
 
     <test name="basic scenario">
-        <parameter name="browserName" value="CHROME"></parameter>
+        <parameter name="browserName" value="CHROME"></parameter> <!-- FIREFOX -->
         <parameter name="platformName" value="WIN"></parameter> <!-- UNIX-->
         <classes>
             <class name="com.loyalToPlant.test.BasicScenarioTest"/>

@@ -2,15 +2,18 @@ package com.loyalToPlant.test;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
+import com.loyalToPlant.listners.TestListener;
 import com.loyalToPlant.page.LoginPage;
 import com.loyalToPlant.page.PhoneBookPage;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.loyalToPlant.helper.Helper.parameters;
 
+@Listeners({TestListener.class})
 public class BaseTest {
 
     private static final String homeURL = parameters.getProperty("URL");

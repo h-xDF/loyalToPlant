@@ -10,7 +10,7 @@ import org.testng.ITestResult;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
-public class TestListner implements IInvokedMethodListener {
+public class TestListener implements IInvokedMethodListener {
 
 
     private void attachScreenshots() {

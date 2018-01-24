@@ -7,8 +7,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class PhoneBook {
 
-    //private static final SelenideElement rootList = $("table>tbody");
-    private ElementsCollection listNotes;// = ElementsCollection list = $$(byXpath("//table/tbody/tr"));
+    private ElementsCollection listNotes;
 
     public PhoneBook() {
         initListNotes();
